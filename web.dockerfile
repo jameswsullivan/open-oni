@@ -1,13 +1,14 @@
 FROM ubuntu:latest
 
-# Define directory paths.
-ARG OPENONI_SOURCE_DIR="/opt/openoni_source"
-ARG OPENONI_INSTALL_DIR="/opt/openoni"
-
 # Set locale to UTF8.
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
+
+# Define directory paths.
+ENV OPENONI_SOURCE_DIR="/opt/openoni_source"
+ENV OPENONI_INSTALL_DIR="/opt/openoni"
+ENV ENTRYPOINT_SCRIPT_PATH="${OPENONI_SOURCE_DIR}/entrypoint.sh"
 
 RUN apt-get -y update && \
     apt-get -y upgrade && \
@@ -48,4 +49,4 @@ RUN chmod +x ${OPENONI_SOURCE_DIR}/entrypoint.sh && \
 WORKDIR ${OPENONI_INSTALL_DIR}
 
 EXPOSE 80
-ENTRYPOINT ["${OPENONI_SOURCE_DIR}/entrypoint.sh"]
+ENTRYPOINT ${ENTRYPOINT_SCRIPT_PATH}
