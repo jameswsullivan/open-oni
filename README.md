@@ -85,6 +85,7 @@ docker compose down -v
 **Auto load batches**
 ```
 docker exec -it openoni-web bash
+cd /opt/openoni
 source ENV/bin/activate
 ./batch_load_batches.sh
 ```

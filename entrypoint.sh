@@ -4,12 +4,21 @@
 # locations, then fires off startup.sh
 
 # Customization
-OPENONI_SOURCE_DIR = "/opt/openoni_source"
-OPENONI_INSTALL_DIR = "/opt/openoni"
+OPENONI_SOURCE_DIR="/opt/openoni_source"
+OPENONI_INSTALL_DIR="/opt/openoni"
 
 echo "Begin copying files ..."
-cp -a ${OPENONI_SOURCE_DIR}/* ${OPENONI_INSTALL_DIR}
-echo "Files copied from ${OPENONI_SOURCE_DIR} to ${OPENONI_INSTALL_DIR}"
+if [ -z "$(ls -A "${OPENONI_INSTALL_DIR}")" ]; then
+    echo "${OPENONI_INSTALL_DIR} already exists and not empty. Skipping the copy."
+else
+    echo "${OPENONI_INSTALL_DIR} does not exist or ${OPENONI_INSTALL_DIR} is empty."
+    echo "Open ONI files will be copied from ${OPENONI_SOURCE_DIR} to ${OPENONI_INSTALL_DIR} ..."
+    cp -a ${OPENONI_SOURCE_DIR}/* ${OPENONI_INSTALL_DIR}
+    echo "Files copied from ${OPENONI_SOURCE_DIR} to ${OPENONI_INSTALL_DIR}"
+fi
+
+ls -al /opt
+echo "Continue to the rest of the scripts ... "
 
 # src=/opt/openoni/docker
 src=${OPENONI_SOURCE_DIR}/docker

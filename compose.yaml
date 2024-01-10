@@ -16,25 +16,25 @@ services:
       - solr
       - rais
     environment:
-      - APACHE_LOG_LEVEL=warn
-      - ONI_BASE_URL=http://localhost
-      - ONI_DB_HOST=rdbms
-      - ONI_DB_PORT
-      - ONI_DB_NAME=openoni
-      - ONI_DB_USER=openoni
-      - ONI_DB_PASSWORD=openoni
-      - ONI_DEBUG
-      - ONI_HSTS_SECONDS
-      - ONI_IIIF_URL
-      - ONI_LOG_LEVEL
-      - ONI_LOG_SQL
-      - ONI_LOG_TO_FILE
-      - ONI_SECRET_KEY
-      - ONI_SOLR_URL
-      - YOUR_CUSTOM_SITE_TITLE
-      - YOUR_CUSTOM_PROJECT_NAME
-      - YOUR_CUSTOM_FROM_EMAIL
-      - YOUR_CUSTOM_EMAIL_SUBJECT_PREFIX
+      APACHE_LOG_LEVEL: warn
+      ONI_BASE_URL: "http://localhost"
+      ONI_DB_HOST: rdbms
+      ONI_DB_PORT: 
+      ONI_DB_NAME: openoni
+      ONI_DB_USER: openoni
+      ONI_DB_PASSWORD: openoni
+      ONI_DEBUG: 
+      ONI_HSTS_SECONDS: 
+      ONI_IIIF_URL: 
+      ONI_LOG_LEVEL: 
+      ONI_LOG_SQL: 
+      ONI_LOG_TO_FILE: 
+      ONI_SECRET_KEY: 
+      ONI_SOLR_URL: 
+      YOUR_CUSTOM_SITE_TITLE: 
+      YOUR_CUSTOM_PROJECT_NAME: 
+      YOUR_CUSTOM_FROM_EMAIL: 
+      YOUR_CUSTOM_EMAIL_SUBJECT_PREFIX: 
   rdbms:
     build:
       context: .
@@ -44,10 +44,10 @@ services:
     networks:
       - openoni
     environment:
-      - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=openoni
-      - MYSQL_USER=openoni
-      - MYSQL_PASSWORD=openoni
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: openoni
+      MYSQL_USER: openoni
+      MYSQL_PASSWORD: openoni
     volumes:
       - mysql_data:/var/lib/mysql
   solr:
@@ -66,10 +66,10 @@ services:
     networks:
       - openoni
     environment:
-      - RAIS_IIIFWEBPATH=/images/iiif
-      - RAIS_IIIFBASEURL=http://localhost
-      - RAIS_TILECACHELEN=250
-      - RAIS_TILEPATH=/opt/openoni/data/batches
+      RAIS_IIIFWEBPATH: "/images/iiif"
+      RAIS_IIIFBASEURL: "http://localhost"
+      RAIS_TILECACHELEN: 250
+      RAIS_TILEPATH: "/opt/openoni/data/batches"
     volumes:
       - ./data/batches:/opt/openoni/data/batches:z
   manager:

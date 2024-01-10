@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:focal
 
 # Set locale to UTF8.
 ENV DEBIAN_FRONTEND noninteractive
@@ -33,7 +33,7 @@ RUN ln -sf /proc/self/fd/1 /var/log/apache2/error.log && \
     chown -R www-data:www-data /var/cache/httpd && \
     a2dissite 000-default.conf && \
     rm /bin/sh && ln -s /bin/bash /bin/sh && \
-    mkdir /opt/openoni
+    mkdir ${OPENONI_INSTALL_DIR}
 
 # Copy files to /opt/openoni_source
 COPY . ${OPENONI_SOURCE_DIR}
