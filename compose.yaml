@@ -35,6 +35,7 @@ services:
       YOUR_CUSTOM_PROJECT_NAME: 
       YOUR_CUSTOM_FROM_EMAIL: 
       YOUR_CUSTOM_EMAIL_SUBJECT_PREFIX: 
+      YOUR_CUSTOM_THEME_NAME: 
   rdbms:
     build:
       context: .
