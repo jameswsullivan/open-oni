@@ -3,7 +3,7 @@ ENV
 onisite/settings_local.py
 onisite/urls.py
 *.log
-data/batches
+# data/batches
 data/ocr
 data/word_coordinates
 .coverage
@@ -24,5 +24,5 @@ onisite/plugins/*
 !onisite/plugins/README.md
 
 # Ignore Docker overrides
-/docker-compose.override.yml
+# /docker-compose.override.yml
 .env

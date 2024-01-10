@@ -1,0 +1,93 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: web.dockerfile
+    image: openoni-web:1.0.0
+    container_name: openoni-web
+    networks:
+      - openoni
+    volumes:
+      - ./data/batches:/opt/openoni/data/batches:z
+    ports:
+      - 80:80
+    depends_on:
+      - rdbms
+      - solr
+      - rais
+    environment:
+      - APACHE_LOG_LEVEL=warn
+      - ONI_BASE_URL=http://localhost
+      - ONI_DB_HOST=rdbms
+      - ONI_DB_PORT
+      - ONI_DB_NAME=openoni
+      - ONI_DB_USER=openoni
+      - ONI_DB_PASSWORD=openoni
+      - ONI_DEBUG
+      - ONI_HSTS_SECONDS
+      - ONI_IIIF_URL
+      - ONI_LOG_LEVEL
+      - ONI_LOG_SQL
+      - ONI_LOG_TO_FILE
+      - ONI_SECRET_KEY
+      - ONI_SOLR_URL
+      - YOUR_CUSTOM_SITE_TITLE
+      - YOUR_CUSTOM_PROJECT_NAME
+      - YOUR_CUSTOM_FROM_EMAIL
+      - YOUR_CUSTOM_EMAIL_SUBJECT_PREFIX
+  rdbms:
+    build:
+      context: .
+      dockerfile: mysql.dockerfile
+    image: openoni-mysql:1.0.0
+    container_name: openoni-db
+    networks:
+      - openoni
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=openoni
+      - MYSQL_USER=openoni
+      - MYSQL_PASSWORD=openoni
+    volumes:
+      - mysql_data:/var/lib/mysql
+  solr:
+    container_name: openoni-solr
+    image: solr
+    networks:
+      - openoni
+    volumes:
+      - solr_data:/var/solr
+    command:
+      - solr-precreate
+      - openoni
+  rais:
+    container_name: openoni-rais
+    image: uolibraries/rais
+    networks:
+      - openoni
+    environment:
+      - RAIS_IIIFWEBPATH=/images/iiif
+      - RAIS_IIIFBASEURL=http://localhost
+      - RAIS_TILECACHELEN=250
+      - RAIS_TILEPATH=/opt/openoni/data/batches
+    volumes:
+      - ./data/batches:/opt/openoni/data/batches:z
+  manager:
+    build:
+      context: .
+      dockerfile: manager.dockerfile
+    image: openoni-manager:1.0.0
+    container_name: openoni-manager
+    networks:
+      - openoni
+    volumes:
+      - ./data/batches:/opt/openoni/data/batches:z
+
+networks:
+  openoni:
+
+volumes:
+  solr_data:
+    driver: local
+  mysql_data:
+    driver: local

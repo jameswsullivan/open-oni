@@ -16,12 +16,13 @@ verify_config() {
 
 setup_database() {
   DB_READY=0
-  MAX_TRIES=30
+  MAX_TRIES=2
   TRIES=0
   while [ $DB_READY == 0 ]
     do
      if
-       ! mysql -uroot -hrdbms -p123456 \
+       #! mysql -uroot -hrdbms -p1234 \
+       ! mysql -u${ONI_DB_USER} -h${ONI_DB_HOST} -p${ONI_DB_PASSWORD} \
          -e 'ALTER DATABASE openoni charset=utf8'
      then
        sleep 5
@@ -38,9 +39,9 @@ setup_database() {
      fi
   done
 
-  echo "setting up a test database ..."
-  mysql -uroot -hrdbms -p123456 \
-    -e 'USE mysql; GRANT ALL on test_openoni.* TO "openoni"@"%" IDENTIFIED BY "openoni";'
+  # echo "setting up a test database ..."
+  # mysql -uroot -hrdbms -p123456 \
+  #   -e 'USE mysql; GRANT ALL on test_openoni.* TO "openoni"@"%" IDENTIFIED BY "openoni";'
 
   echo "-------" >&2
   echo "Migrating database" >&2

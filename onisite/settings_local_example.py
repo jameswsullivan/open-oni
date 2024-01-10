@@ -15,6 +15,8 @@ BASE_URL = os.getenv('ONI_BASE_URL', 'http://localhost')
 url = urllib.parse.urlparse(BASE_URL)
 ALLOWED_HOSTS = [url.hostname]
 
+YOUR_CUSTOM_THEME = os.getenv('YOUR_CUSTOM_THEME_NAME', 'default')
+
 if url.scheme == 'https':
     """
     Enable HSTS by setting ONI_HSTS_SECONDS > 0.
@@ -28,24 +30,45 @@ CONN_MAX_AGE = 30
 
 # List of configuration classes / app packages in order of priority high to low.
 # The first item in the list has final say when collisions occur.
-INSTALLED_APPS = (
-    # Default
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+# INSTALLED_APPS = (
+#     # Default
+#     'django.contrib.sessions',
+#     'django.contrib.messages',
+#     'django.contrib.staticfiles',
 
-    # Humanize and local theme override all below
-    'django.contrib.humanize',  # Makes data more human-readable
+#     # Humanize and local theme override all below
+#     'django.contrib.humanize',  # Makes data more human-readable
 
-    # Plugins
-    # See https://github.com/open-oni?q=plugin for available plugins
+#     # Plugins
+#     # See https://github.com/open-oni?q=plugin for available plugins
 
-    # Open ONI
-    # Extend the default theme by including your own above themes.default
-    # 'themes.YOUR_THEME_NAME',
-    'themes.default',
-    'core',
-)
+#     # Open ONI
+#     # Extend the default theme by including your own above themes.default
+#     # 'themes.YOUR_THEME_NAME',
+#     'themes.default',
+#     'core',
+# )
+
+if YOUR_CUSTOM_THEME != 'default':
+    INSTALLED_APPS = (
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'django.contrib.humanize',
+        f'themes.{YOUR_CUSTOM_THEME}',
+        'themes.default',
+        'core',
+    )
+else:
+    INSTALLED_APPS = (
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'django.contrib.humanize',
+        'themes.default',
+        'core',
+    )
+
 
 """
 'From' address on general emails sent by Django:
@@ -53,8 +76,8 @@ If sending email from different server, replace `@' + url.hostname` with host.
 Space at the end of EMAIL_SUBJECT_PREFIX intentional
 to separate subject from prefix.
 """
-DEFAULT_FROM_EMAIL = 'YOUR_PROJECT_NAME_ABBREVIATION-no-reply@' + url.hostname
-EMAIL_SUBJECT_PREFIX = '[YOUR_PROJECT_NAME_ABBREVIATION] '
+DEFAULT_FROM_EMAIL = os.getenv('YOUR_CUSTOM_FROM_EMAIL', 'no-reply@mydomain.com')
+EMAIL_SUBJECT_PREFIX = os.getenv('YOUR_CUSTOM_EMAIL_SUBJECT_PREFIX', 'YOUR_EMAIL_SUBJECT_PREFIX')
 
 
 ################################################################
@@ -71,8 +94,8 @@ descriptions that will only show up occasionally.
 For example: 'Open ONI' for most headers, 'Open Online Newspapers Initiative'
 for introduction / about / further information / etc
 """
-SITE_TITLE = 'YOUR_SHORT_PROJECT_NAME'
-PROJECT_NAME = 'YOUR_LONG_PROJECT_NAME'
+SITE_TITLE = os.getenv('YOUR_CUSTOM_SITE_TITLE', 'YOUR_PROJECT_NAME')
+PROJECT_NAME = os.getenv('YOUR_CUSTOM_PROJECT_NAME', 'YOUR_PROJECT_NAME')
 
 """
 Use below only if LoC is down and MARC requests fail.
