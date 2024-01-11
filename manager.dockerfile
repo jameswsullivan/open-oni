@@ -10,7 +10,7 @@ ENV LANG en_US.UTF-8
 
 RUN apt-get update -y && \
     apt-get upgrade -y && \
-    apt-get install -y nano curl unzip tzdata locales mysql-client && \
+    apt-get install -y git nano curl unzip tzdata locales mysql-client && \
     apt-get install -y iputils-ping iproute2 openssh-server && \
     ln -fs /usr/share/zoneinfo/US/Central /etc/localtime && \
     locale-gen en_US.UTF-8 && \
