@@ -8,7 +8,7 @@ OPENONI_SOURCE_DIR="/opt/openoni_source"
 OPENONI_INSTALL_DIR="/opt/openoni"
 
 echo "Begin copying files ..."
-if [ -z "$(ls -A "${OPENONI_INSTALL_DIR}")" ]; then
+if [ -n "$(ls -A "${OPENONI_INSTALL_DIR}")" ]; then
     echo "${OPENONI_INSTALL_DIR} already exists and not empty. Skipping the copy."
 else
     echo "${OPENONI_INSTALL_DIR} does not exist or ${OPENONI_INSTALL_DIR} is empty."
