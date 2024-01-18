@@ -6,9 +6,8 @@ ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 
 # Define directory paths.
-ENV OPENONI_SOURCE_DIR="/opt/openoni_source"
 ENV OPENONI_INSTALL_DIR="/opt/openoni"
-ENV ENTRYPOINT_SCRIPT_PATH="${OPENONI_SOURCE_DIR}/entrypoint.sh"
+ENV ENTRYPOINT_SCRIPT_PATH="${OPENONI_INSTALL_DIR}/web-entrypoint.sh"
 
 RUN apt-get -y update && \
     apt-get -y upgrade && \
@@ -32,19 +31,10 @@ RUN ln -sf /proc/self/fd/1 /var/log/apache2/error.log && \
     mkdir -p /var/cache/httpd/mod_disk_cache && \
     chown -R www-data:www-data /var/cache/httpd && \
     a2dissite 000-default.conf && \
-    rm /bin/sh && ln -s /bin/bash /bin/sh && \
-    mkdir ${OPENONI_INSTALL_DIR}
+    rm /bin/sh && ln -s /bin/bash /bin/sh
 
-# Copy files to /opt/openoni_source
-COPY . ${OPENONI_SOURCE_DIR}
-WORKDIR ${OPENONI_SOURCE_DIR}
-
-RUN chmod +x ${OPENONI_SOURCE_DIR}/entrypoint.sh && \
-    chmod +x ${OPENONI_SOURCE_DIR}/batch_load_batches.sh && \
-    chmod +x ${OPENONI_SOURCE_DIR}/configure_permissions.sh && \
-    echo "/usr/local/bin/manage delete_cache" > /etc/cron.daily/delete_cache && \
-    chmod +x /etc/cron.daily/delete_cache && \
-    chmod -R 777 ${OPENONI_SOURCE_DIR}/data/
+RUN echo "/usr/local/bin/manage delete_cache" > /etc/cron.daily/delete_cache && \
+    chmod +x /etc/cron.daily/delete_cache
 
 WORKDIR ${OPENONI_INSTALL_DIR}
 

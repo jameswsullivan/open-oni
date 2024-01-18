@@ -8,10 +8,13 @@ services:
     networks:
       - openoni
     volumes:
-      - ./data/batches:/opt/openoni/data/batches:z
+      - web_appdata:/opt/openoni:z
+      - web_batches:/opt/openoni/data/batches:z
+      - web_themes:/opt/openoni/themes:z
     ports:
       - 80:80
     depends_on:
+      - manager
       - rdbms
       - solr
       - rais
@@ -72,7 +75,7 @@ services:
       RAIS_TILECACHELEN: 250
       RAIS_TILEPATH: "/opt/openoni/data/batches"
     volumes:
-      - ./data/batches:/opt/openoni/data/batches:z
+      - web_batches:/opt/openoni/data/batches:z
   manager:
     build:
       context: .
@@ -82,7 +85,9 @@ services:
     networks:
       - openoni
     volumes:
-      - ./data/batches:/opt/openoni/data/batches:z
+      - web_appdata:/opt/openoni:z
+      - web_batches:/opt/openoni/data/batches:z
+      - web_themes:/opt/openoni/themes:z
 
 networks:
   openoni:
@@ -91,4 +96,10 @@ volumes:
   solr_data:
     driver: local
   mysql_data:
+    driver: local
+  web_appdata:
+    driver: local
+  web_batches:
+    driver: local
+  web_themes:
     driver: local
