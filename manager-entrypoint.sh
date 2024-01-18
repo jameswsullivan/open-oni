@@ -8,6 +8,7 @@ OPENONI_SOURCE_DIR="/opt/openoni_source"
 OPENONI_INSTALL_DIR="/opt/openoni"
 
 DEFAULT_INSTALL_DIR_CONTENTS="data
+onisite
 themes"
 
 echo "Begin copying files ..."
