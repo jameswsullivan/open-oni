@@ -6,6 +6,9 @@
 # Customization
 OPENONI_INSTALL_DIR="/opt/openoni"
 
+echo "\"web\" service started ... "
+echo "Getting things ready ... please wait ... "
+
 # src=/opt/openoni/docker
 src=${OPENONI_INSTALL_DIR}/docker
 
