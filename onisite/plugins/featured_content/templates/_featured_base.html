@@ -1,0 +1,55 @@
+{% extends "__l_main.html" %}
+ 
+{% load static %}
+{% load humanize %}
+{% load image_urls %}
+ 
+{% block sub_page_head %}{% endblock %}
+
+{% block head_page_css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/featured_pages.css' %}">
+{% endblock head_page_css %}
+
+{% block subcontent %}
+
+  <div class="row">
+    <div class="col-md-4">
+      {% block featured_description %}
+        <h3>Browse Featured Content</h3>
+        <p>Browse pages with culturally, politically, or socially significant content.</p>
+      {% endblock featured_description %}
+    </div>
+    <div class="col-md-8">
+      {% block featured_pages %}
+        {% if this_day_title %}
+          <h3>On This Day</h3>
+        {% else %}
+          <h3>Featured Content</h3>
+        {% endif %}
+        <ul class="featured_content">
+          {% if pages %}
+            {% for page in pages %}
+              {% if page.page_obj %}
+                <li>
+                  <a href="{% url 'openoni_page' page.lccn page.date page.edition page.sequence %}">
+                    {% if page.page_obj.relative_image_path %}
+                      <img src="{% thumb_image_url page.page_obj %}" alt="" />
+                    {% endif %}
+                    <p class="featured_title">{{ page.name }}</p>
+                    <p class="featured_date">{{ page.date }}</p>
+                    <p class="featured_caption">{{ page.caption }}</p>
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            {% block featured_no_content %}
+              <p>No content available</p>
+            {% endblock featured_no_content %}
+          {% endif %}
+        </ul>
+      {% endblock featured_pages %}
+    </div>
+  </div>
+{% endblock subcontent %}  

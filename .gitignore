@@ -19,7 +19,7 @@ themes/*
 !themes/default
 
 # Ignore all plugins, but keep the directory module and readme
-onisite/plugins/*
+# onisite/plugins/*
 !onisite/plugins/__init__.py
 !onisite/plugins/README.md
 
