@@ -30,7 +30,7 @@
     - `YOUR_CUSTOM_PROJECT_NAME`
     - `YOUR_CUSTOM_FROM_EMAIL`
     - `YOUR_CUSTOM_EMAIL_SUBJECT_PREFIX`
-    - `YOUR_CUSTOM_THEME_NAME: `
+    - `YOUR_CUSTOM_THEME_NAME`
 
 2. Embedded sample batches into the project:
 - Repo: https://github.com/open-oni/sample-data .
