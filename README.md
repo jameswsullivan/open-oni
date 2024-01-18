@@ -6,7 +6,7 @@
 - See the [original readme here](https://github.com/open-oni/open-oni/blob/dev/README.md)
 - [Customizations](https://github.com/jameswsullivan/open-oni/blob/customizations/CUSTOMIZATIONS.md)
 
-- When not using `docker compose`, the `manager` service has to be started first for necessary files to be copied into the `/opt/openoni` folder before the `web` service can successfully start.
+- The `manager` service has to be started first for necessary files to be copied into the `/opt/openoni` folder before the `web` service can successfully start.
 
 ## Run Open ONI with `docker compose`
 
