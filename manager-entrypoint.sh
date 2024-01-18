@@ -27,4 +27,5 @@ echo
 
 echo "Preparation work finished successfully. The \"web\" service can be safely started."
 
+exec "$@"
 tail -f /dev/null
