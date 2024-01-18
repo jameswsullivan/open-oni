@@ -55,6 +55,7 @@ if YOUR_CUSTOM_THEME != 'default':
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'django.contrib.humanize',
+        'onisite.plugins.featured_content',
         f'themes.{YOUR_CUSTOM_THEME}',
         'themes.default',
         'core',
@@ -65,6 +66,7 @@ else:
         'django.contrib.messages',
         'django.contrib.staticfiles',
         'django.contrib.humanize',
+        'onisite.plugins.featured_content',
         'themes.default',
         'core',
     )
