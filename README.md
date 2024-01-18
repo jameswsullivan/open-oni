@@ -25,11 +25,12 @@
 - Add Environment Varialbes to `web.dockerfile`:
     - `ENV OPENONI_INSTALL_DIR="/opt/openoni"`
     - `ENV ENTRYPOINT_SCRIPT_PATH="${OPENONI_INSTALL_DIR}/web-entrypoint.sh"`
-- Add four environment variables for site customization:
+- Add environment variables for site customization:
     - `YOUR_CUSTOM_SITE_TITLE`
     - `YOUR_CUSTOM_PROJECT_NAME`
     - `YOUR_CUSTOM_FROM_EMAIL`
     - `YOUR_CUSTOM_EMAIL_SUBJECT_PREFIX`
+    - `YOUR_CUSTOM_THEME_NAME: `
 
 2. Embedded sample batches into the project:
 - Repo: https://github.com/open-oni/sample-data .
