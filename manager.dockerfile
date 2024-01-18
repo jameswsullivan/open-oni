@@ -25,7 +25,6 @@ WORKDIR ${OPENONI_SOURCE_DIR}
 RUN chmod +x ${OPENONI_SOURCE_DIR}/web-entrypoint.sh && \
     chmod +x ${OPENONI_SOURCE_DIR}/manager-entrypoint.sh && \
     chmod +x ${OPENONI_SOURCE_DIR}/batch_load_batches.sh && \
-    chmod +x ${OPENONI_SOURCE_DIR}/configure_permissions.sh && \
     chmod +x ${OPENONI_SOURCE_DIR}/compile_themes.sh && \
     chmod -R 777 ${OPENONI_SOURCE_DIR}/data/
 
