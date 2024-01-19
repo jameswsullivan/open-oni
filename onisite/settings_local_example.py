@@ -16,7 +16,7 @@ url = urllib.parse.urlparse(BASE_URL)
 ALLOWED_HOSTS = [url.hostname]
 
 YOUR_CUSTOM_THEME = os.getenv('YOUR_CUSTOM_THEME_NAME', 'default')
-THUMBNAIL_WIDTH = os.getenv('YOUR_CUSTOM_THUMBNAIL_SIZE', 240)
+THUMBNAIL_WIDTH = int(os.getenv('YOUR_CUSTOM_THUMBNAIL_SIZE', '240'))
 
 if url.scheme == 'https':
     """
