@@ -23,6 +23,7 @@
     - `YOUR_CUSTOM_FROM_EMAIL`
     - `YOUR_CUSTOM_EMAIL_SUBJECT_PREFIX`
     - `YOUR_CUSTOM_THEME_NAME`
+- Added `YOUR_CUSTOM_THUMBNAIL_SIZE` environment variable to quickly change thumbnail size in `/opt/openoni/onisite/settings_local_example.py`.
 
 ## Embedded Sample Batches
 - Repo: https://github.com/open-oni/sample-data .
@@ -137,6 +138,7 @@ Modifications to the `/opt/openoni/onisite/settings_local.py` file is detailed i
 #### Changes to `/opt/openoni/onisite/settings_local_example.py`:
 ```
 YOUR_CUSTOM_THEME = os.getenv('YOUR_CUSTOM_THEME_NAME', 'default')
+THUMBNAIL_WIDTH = os.getenv('YOUR_CUSTOM_THUMNAIL_SIZE', 240)
 
 if YOUR_CUSTOM_THEME != 'default':
     INSTALLED_APPS = (
