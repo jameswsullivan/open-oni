@@ -3,7 +3,8 @@ FROM ubuntu
 # Define directory paths.
 ENV OPENONI_SOURCE_DIR="/opt/openoni_source"
 ENV OPENONI_INSTALL_DIR="/opt/openoni"
-ENV ENTRYPOINT_SCRIPT_PATH="${OPENONI_SOURCE_DIR}/manager-entrypoint.sh"
+ENV ENTRYPOINT_SCRIPT_FILENAME="manager-entrypoint.sh"
+ENV ENTRYPOINT_SCRIPT_PATH="${OPENONI_SOURCE_DIR}/${ENTRYPOINT_SCRIPT_FILENAME}"
 
 # Set locale to UTF8.
 ENV DEBIAN_FRONTEND noninteractive
