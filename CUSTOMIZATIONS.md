@@ -38,7 +38,7 @@
 - Static Pages
     - Plugin Repo: https://github.com/open-oni/plugin_staticpages
     - The `v3.2.0` release (commit: `7c86642`) is currently used.
-    - Static pages are directly served without any prefixes. `re_path(r'^$', include("onisite.plugins.staticpages.urls")),`
+    - Static pages are served with the `static/` prefix. `re_path(r'^static/', include("onisite.plugins.staticpages.urls")),`
     - `'onisite.plugins.staticpages',` is added to the `/opt/openoni/onisite/settings_local_example.py` file.
 
 ### Featured Content
