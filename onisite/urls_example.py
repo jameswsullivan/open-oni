@@ -22,6 +22,7 @@ Including another URLconf
 # application to be unable to find any of your OCR data!  (For details, see
 # https://github.com/open-oni/open-oni/issues/556)
 from django.urls import include, path, re_path
+from django.conf.urls import url, include
 from onisite.plugins.featured_content import views as fc_views
 
 urlpatterns = [
@@ -33,7 +34,7 @@ urlpatterns = [
 
   re_path(r'^$', fc_views.featured, name="featured_home"),
   re_path(r'^featured_content/', include("onisite.plugins.featured_content.urls")),
-  re_path(r'^static/', include("onisite.plugins.staticpages.urls")),
+  re_path(r'^page/', include("onisite.plugins.staticpages.urls")),
 
   # Open ONI URLs
   path('', include("core.urls")),

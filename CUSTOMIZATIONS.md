@@ -38,10 +38,11 @@
 - Static Pages
     - Plugin Repo: https://github.com/open-oni/plugin_staticpages
     - The `v3.2.0` release (commit: `7c86642`) is currently used.
-    - Static pages are served with the `static/` prefix. `re_path(r'^static/', include("onisite.plugins.staticpages.urls")),`
+    - Static pages are served with the `page/` prefix. `re_path(r'^page/', include("onisite.plugins.staticpages.urls")),`
     - `'onisite.plugins.staticpages',` is added to the `/opt/openoni/onisite/settings_local_example.py` file.
+    - **NOTE:** Some instructions are wrong in the original repo's [readme](https://github.com/open-oni/plugin_staticpages/blob/main/README.md). See the Static Content Plugin section below for the corrected ones.
 
-### Featured Content
+### Featured Content Plugin
 
 #### Plugin Instalation (The plugin has already been included and configured. The steps are for reference only).
 ```
@@ -127,7 +128,26 @@ urlpatterns = [
 ]
 ```
 
-Modifications to the `/opt/openoni/onisite/settings_local.py` file is detailed in the next section below.
+Modifications to the `/opt/openoni/onisite/settings_local.py` file is detailed in the next section below under "Changes to `/opt/openoni/onisite/settings_local_example.py`".
+
+### Static Pages Plugin
+
+In `/opt/openoni/onisite/urls_example.py`, add `from django.conf.urls import url, include` and `re_path(r'^page/', include("onisite.plugins.staticpages.urls")),`. The modified `urls_example.py` should look like:
+```
+from django.urls import include, path, re_path
+from django.conf.urls import url, include
+from onisite.plugins.featured_content import views as fc_views
+
+urlpatterns = [
+  re_path(r'^$', fc_views.featured, name="featured_home"),
+  re_path(r'^featured_content/', include("onisite.plugins.featured_content.urls")),
+  re_path(r'^page/', include("onisite.plugins.staticpages.urls")),
+  path('', include("core.urls")),
+]
+```
+
+**NOTE:** You actually cannot use the `static/` prefix because the theme's static files are compiled and saved under a directory called `static` within the Open ONI's installation folder. Using `static/` as the prefix will produce 404 errors.
+
 
 ## Changes to Scripts
 - Changes to `entrypoint.sh`:
