@@ -29,10 +29,17 @@
 - Repo: https://github.com/open-oni/sample-data .
 - Placed `batch_dlc_manyyears_ver01`, `batch_mnhi_german_ver01`, `batch_nbu_manyissues_ver01` into `/opt/openoni/data/batches` directory.
 
-## Embedded Featured Content Plugin
-- Plugin Repo: https://github.com/open-oni/plugin_featured_content
-- The `v0.7.0` (commit: `72003cc`) is currently used.
-- Added the generic home page welcome text to `templates/featured_example.html`.
+## Embedded Plugins
+- Featured Content
+    - Plugin Repo: https://github.com/open-oni/plugin_featured_content
+    - The `v0.7.0` (commit: `72003cc`) is currently used.
+    - Added the generic home page welcome text to `templates/featured_example.html`.
+    - `'onisite.plugins.featured_content',` is added to the `/opt/openoni/onisite/settings_local_example.py` file.
+- Static Pages
+    - Plugin Repo: https://github.com/open-oni/plugin_staticpages
+    - The `v3.2.0` release (commit: `7c86642`) is currently used.
+    - Static pages are directly served without any prefixes. `re_path(r'^$', include("onisite.plugins.staticpages.urls")),`
+    - `'onisite.plugins.staticpages',` is added to the `/opt/openoni/onisite/settings_local_example.py` file.
 
 ### Featured Content
 
@@ -147,6 +154,7 @@ if YOUR_CUSTOM_THEME != 'default':
         'django.contrib.staticfiles',
         'django.contrib.humanize',
         'onisite.plugins.featured_content',
+        'onisite.plugins.staticpages',
         f'themes.{YOUR_CUSTOM_THEME}',
         'themes.default',
         'core',
@@ -158,6 +166,7 @@ else:
         'django.contrib.staticfiles',
         'django.contrib.humanize',
         'onisite.plugins.featured_content',
+        'onisite.plugins.staticpages',
         'themes.default',
         'core',
     )

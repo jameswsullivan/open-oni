@@ -33,6 +33,7 @@ urlpatterns = [
 
   re_path(r'^$', fc_views.featured, name="featured_home"),
   re_path(r'^featured_content/', include("onisite.plugins.featured_content.urls")),
+  re_path(r'^', include("onisite.plugins.staticpages.urls")),
 
   # Open ONI URLs
   path('', include("core.urls")),

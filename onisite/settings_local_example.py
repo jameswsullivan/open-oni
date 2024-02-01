@@ -57,6 +57,7 @@ if YOUR_CUSTOM_THEME != 'default':
         'django.contrib.staticfiles',
         'django.contrib.humanize',
         'onisite.plugins.featured_content',
+        'onisite.plugins.staticpages',
         f'themes.{YOUR_CUSTOM_THEME}',
         'themes.default',
         'core',
@@ -68,6 +69,7 @@ else:
         'django.contrib.staticfiles',
         'django.contrib.humanize',
         'onisite.plugins.featured_content',
+        'onisite.plugins.staticpages',
         'themes.default',
         'core',
     )
